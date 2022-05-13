@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/default.aspx" title="Home"  description="Home">
+    <siteMapNode url="~/PickingScrn_1a.aspx" title="Sales Picking (System Directed)"  description="System guided Sales Orders Picking" />
+    <siteMapNode url="~/PickingScrn_1b.aspx" title="Sales Picking (User Directed)"  description="Ad-hoc picking" />
+    <siteMapNode url="~/ArrivalJournalStart.aspx" title="Arrival journal (System Directed)"  description="System guided arrival journal receiving" />
+    <siteMapNode url="~/ReceivePurchOrder.aspx" title="Purchase Receipts"  description="Receive items for purchase order" />
+    <siteMapNode url="~/Loc2Loc.aspx" title="Loc to loc movement"  description="Transfer multiple items from one location to another" />
+    <siteMapNode url="~/CycleCount.aspx" title="Cycle counting (User Directed)"  description="Cycle count in a specific location/Item" />
+    <siteMapNode url="~/CycleCountSysDirect.aspx" title="Cycle counting (System Directed)"  description="System guided to all assigned cycle count tasks" />
+    <siteMapNode url="~/InquiryOnhand.aspx" title="Inventory on hand"  description="Inquiry inventory on hand" />
+  </siteMapNode>
+</siteMap>

@@ -1,0 +1,134 @@
+﻿body {
+    background-color: #fff;
+    font-size: 0.9em;
+}
+
+.page {
+    width: auto;
+    margin: 0;
+    border-width: 0;
+}
+
+p {
+    margin-bottom: 0em;
+    line-height: 1.2em;
+}
+
+.header h1 {
+    padding: 0 0 0 0.5em;
+    color: #f9f9f9;
+    line-height: 1.6em;
+    font-size: 1.4em;
+}
+
+.title {
+    float: none;
+}
+
+.loginDisplay {
+    text-align: left;
+    padding: 0 0 0.5em 10px;
+    font-size: 0.8em;
+}
+
+.menu {
+    font-size: 0.9em;
+}
+
+input.textEntry {
+    width: auto;
+}
+
+input.passwordEntry {
+    border: 1px solid #ccc;
+    width: auto;
+}
+
+div.accountInfo {
+    width: auto;
+}
+
+/* User Defined */
+
+/* AjaxToolkit */
+
+.AjaxToolkitStyle .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer input {
+    background-image: url(../../Images/toolkit-bg.gif);
+    background-position: top left;
+    border: 0px none;
+    color: #FFFFFF;
+    padding: 4px 0px 3px 5px;
+    font-size: 13px;
+    height: 16px;
+    width: 240px;
+}
+
+.AjaxToolkitStyle .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer button {
+    background-image: url(../../Images/toolkit-arrow.gif);
+    background-position: top left;
+    border: 0px none;
+    height: 23px;
+    width: 23px;
+}
+
+.AjaxToolkitStyle .ajax__combobox_itemlist {
+    border-color: #0F2543;
+    background-color: #EFEFEF;
+}
+
+.AquaStyle .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer input {
+    margin: 0;
+    background-image: url(../../Images/aqua-bg.gif);
+    background-position: top left;
+    border: 0px none;
+    padding: 2px 0px 0px 8px;
+    font-size: 11px;
+    height: 17px;
+}
+
+.AquaStyle .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer button {
+    background-image: url(../../Images/aqua-arrow.gif);
+    background-position: top left;
+    border: 0px none;
+    height: 19px;
+    width: 19px;
+}
+
+.AquaStyle .ajax__combobox_itemlist {
+    border-color: #000000;
+    background-color: #FFFFFF;
+}
+
+.WindowsStyle .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer input {
+    margin: 0;
+    border: solid 1px #7F9DB9;
+    border-right: 0px none;
+    padding: 1px 0px 0px 5px;
+    font-size: 13px;
+    height: 18px;
+    position: relative;
+}
+
+.WindowsStyle .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer button {
+    margin: 0;
+    padding: 0;
+    background-image: url(../../Images/windows-arrow.gif);
+    background-position: top left;
+    border: 0px none;
+    height: 21px;
+    width: 21px;
+}
+
+.WindowsStyle .ajax__combobox_itemlist {
+    border-color: #7F9DB9;
+}
+
+/*Popup Control*/
+.popupControl {
+    background-color: White;
+    position: absolute;
+    visibility: hidden;
+}
+.hidden {
+    display: none;
+}

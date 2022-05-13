@@ -1,0 +1,121 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Mobile.master.cs" Inherits="Mobile" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title></title>
+    <%--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">--%>
+
+   <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <style type="text/css">
+        .hidden {
+            display: none;
+        }
+    </style>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Mobile.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/bootstrap.css" rel="Stylesheet" type="text/css" />
+    <link href="Styles/bootstrap.min.css" rel="Stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Form1" runat="server">
+        <asp:ScriptManager runat="server" ID="scriptManager1" AsyncPostBackTimeout="100000" />
+        <asp:UpdatePanel runat="server" ID="pnlMaster">
+            <ContentTemplate>
+                <div class="page">
+                    <div class="header">
+                        <div class="title">
+                            <h1 style="font-size: smaller">Dyanmics Mobile Scanner
+                            </h1>
+                        </div>
+                        <div class="loginDisplay">
+                            <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false" OnViewChanged="HeadLoginView_ViewChanged">
+                                <AnonymousTemplate>
+                                    [ <a href="~/Logon.aspx" id="HeadLoginStatus" runat="server" tabindex="-1">Log In</a> ]
+                                </AnonymousTemplate>
+                                <LoggedInTemplate>
+                                    Welcome, <span class="bold">
+                                        <asp:LoginName ID="HeadLoginName" runat="server" ForeColor="Chartreuse" />
+                                        </a></span><text>!</text>
+                                    <text>[ </text>
+                                    <asp:LoginStatus ID="HeadLoginStatus" runat="server" TabIndex="-1" LogoutAction="Redirect" LogoutText="Log Out" ForeColor="BurlyWood" LogoutPageUrl="~" OnLoggingOut="HeadLoginStatus_LoggingOut" />
+                                    <text>]</text>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<text>Current Company </text><asp:Label runat="server" ID="lblCurrentComp" Font-Bold="true" ForeColor="Chartreuse" /><text> (</text><asp:LinkButton runat="server" ID="lbCurrentComp" TabIndex="-1" Text="Change" OnClick="lbCurrentComp_Click" ForeColor="BurlyWood" CausesValidation="false" /><text>)</text>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<text>Current Warehouse </text><asp:Label runat="server" ID="lblCurrentWhse" Font-Bold="true" ForeColor="Chartreuse" /><text> (</text><asp:LinkButton runat="server" ID="lbCurrentWhse" TabIndex="-1" Text="Change" OnClick="lbCurrentWhse_Click" ForeColor="BurlyWood" CausesValidation="false" /><text>)</text>
+                                </LoggedInTemplate>
+                            </asp:LoginView>
+                        </div>
+                        <div class="clear hideSkiplink">
+                            <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu"
+                                EnableViewState="False" IncludeStyleBlock="False" Orientation="Horizontal" MaximumDynamicDisplayLevels="1">
+                                <Items>
+                                    <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home" />
+                                    <asp:MenuItem NavigateUrl="~/UserSetting.aspx" Text="Settings" />
+                                </Items>
+                                <StaticMenuItemStyle Height="10px" />
+                                <StaticItemTemplate>
+                                    <text><%# Eval("Text") %></text>
+                                </StaticItemTemplate>
+                            </asp:Menu>
+                        </div>
+                    </div>
+                    <div class="main">
+                        <%--<asp:LinkButton runat="server" ID="lbHome" TabIndex="-1" Text="Home" Font-Size="Small" Font-Underline="false" OnClick="lbHome_Click" CausesValidation="false" /><asp:Label runat="server" ID="lblSplit" Text="&nbsp;>&nbsp;" Font-Size="Small" Visible="false" /><asp:LinkButton runat="server" ID="lbSubMenu" TabIndex="-1" Font-Size="Small" Font-Underline="false" CausesValidation="false" /><asp:Label runat="server" ID="lblSplit2" Text="&nbsp;>&nbsp;" Font-Size="Small" /><asp:Label runat="server" ID="lblPageTitle" Font-Size="Small" />--%>
+                        <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" SiteMapProvider="WebSiteMap" ShowStartingNode="true" />
+                        <asp:SiteMapPath ID="SiteMapPath" runat="server" PathSeparator=" > " RenderCurrentNodeAsLink="true">
+                        </asp:SiteMapPath>
+                        <asp:Panel runat="server" ID="pnlChangeWhse" Visible="false" BorderWidth="3" BorderColor="#990000" Width="200">
+                            <asp:Label runat="server" ID="lblComp" Text="Change current company to:" Font-Italic="true" ForeColor="Red" /><br />
+                            <asp:DropDownList runat="server" ID="ddlCurrentComp" AutoPostBack="true" OnTextChanged="ddlCurrentComp_TextChanged" />
+                            <br />
+                            <asp:Label runat="server" ID="lblWhse" Text="Change current warehouse to:" Font-Italic="true" ForeColor="Red" /><br />
+                            <asp:DropDownList runat="server" ID="ddlCurrentWhse" />
+                            <asp:UpdateProgress runat="server" ID="updateProgress1" DynamicLayout="false">
+                                <ProgressTemplate>
+                                    <img src="../Images/throbber.gif" alt="" />
+                                </ProgressTemplate>
+                            </asp:UpdateProgress>
+                            <asp:Label runat="server" ID="lblChangeWhseError"></asp:Label>
+                            <br />
+                            <asp:Button runat="server" ID="btnSaveWhse" TabIndex="-1" Text="Save" OnClick="btnSaveWhse_Click" UseSubmitBehavior="false" CausesValidation="false" />
+                            &nbsp;&nbsp;<asp:Button runat="server" ID="btnCancelWhse" TabIndex="-1" Text="Cancel" OnClick="btnCancelWhse_Click" UseSubmitBehavior="false" CausesValidation="false" />
+                        </asp:Panel>
+
+                        <br />
+
+                        <asp:Label runat="server" ID="lblMessage" />
+
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                        <asp:CustomValidator runat="server" ID="vldCust" Display="Dynamic" />
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="footer">
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+</body>
+<script type="text/javascript">
+    // Disable element and don't validate
+    function disableElementNV(elem) {
+        elem.disabled = true;
+    }
+
+    // Disable element only after client-side validation passes.  Warning: Breaks "CausesValidation" property on buttons...use disableElementNV when bypassing validation is necessary
+    function disableElement(elem) {
+        if (typeof (Page_ClientValidate) == 'function') {
+            Page_ClientValidate();
+        }
+
+        if (Page_IsValid) {
+            elem.disabled = true;
+        }
+    }
+</script>
+</html>

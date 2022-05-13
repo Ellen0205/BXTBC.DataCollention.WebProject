@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    
+    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server" id="Form1">
+        <asp:ScriptManager runat="server" ID="scriptManager1" AsyncPostBackTimeout="100000" />
+        <asp:UpdatePanel runat="server" ID="pnlMaster">
+            <ContentTemplate>
+                <div class="page">
+                    <div class="header">
+                        <div class="title">
+                            <h1>
+                                Dyanmics Mobile Scanner
+                            </h1>
+                        </div>
+                        <div class="loginDisplay">
+                            <asp:LoginView id="HeadLoginView" runat="server" EnableViewState="false">
+                                <AnonymousTemplate>
+                                    [ <a href="~/Logon.aspx" id="HeadLoginStatus" runat="server">Log In</a> ]
+                                </AnonymousTemplate>
+                                <LoggedInTemplate>
+                                    Welcome <span class="bold"><asp:LoginName id="HeadLoginName" runat="server" /></span>!
+                                    [ <asp:LoginStatus id="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/" OnLoggingOut="HeadLoginStatus_LoggingOut" /> ]
+                                </LoggedInTemplate>
+                            </asp:LoginView>
+                        </div>
+                        <div class="clear hideSkiplink">
+                            <asp:Menu id="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                <Items>
+                                    <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                                    <%--<asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>--%>
+                                </Items>
+                            </asp:Menu>
+                        </div>
+                    </div>
+                    <div class="main">
+                        <asp:ContentPlaceHolder id="MainContent" runat="server"/>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="footer">
+        
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+</body>
+<script type="text/javascript">
+    // Disable element and don't validate
+    function disableElementNV(elem) {
+        elem.disabled = true;
+    }
+
+    // Disable element only after client-side validation passes.  Warning: Breaks "CausesValidation" property on buttons...use disableElementNV when bypassing validation is necessary
+    function disableElement(elem) {
+        if (typeof (Page_ClientValidate) == 'function') {
+            Page_ClientValidate();
+        }
+
+        if (Page_IsValid) {
+            elem.disabled = true;
+        }
+    }
+</script>
+</html>
